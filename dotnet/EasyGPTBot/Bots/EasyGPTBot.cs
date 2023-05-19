@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EasyGPTBot.Bots
 {
-    public class EchoBot : ActivityHandler
+    public class EasyGPTBot : ActivityHandler
     {
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
