@@ -12,7 +12,7 @@ using System;
 
 namespace EasyGPTBot.Extensions
 {
-    public static class AzureOpenAiExtensions
+    public static class OpenAiExtensions
     {
         public static IServiceCollection AddOpenAiClient(
             this IServiceCollection services)

@@ -5,11 +5,14 @@
 
 using Azure.AI.OpenAI;
 using EasyGPTBot.Configuration;
+using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Azure.Blobs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,14 +21,24 @@ namespace EasyGPTBot.Bots
 {
     public class EasyGPTBot : ActivityHandler
     {
-        private readonly IOptionsMonitor<OpenAiConfiguration> configurationMonitor;
+        private const string ConversationStorageBotFromId = "EasyGPTBot";
+
+        private readonly BlobsTranscriptStore conversationStorage;
+        private readonly IOptionsMonitor<OpenAiConfiguration> openAiConfigMonitor;
         private readonly OpenAIClient openAiClient;
 
         public EasyGPTBot(
-            IOptionsMonitor<OpenAiConfiguration> configurationMonitor,
+            IOptionsMonitor<ConversationStorageConfiguration> conversationStorageConfigMonitor,
+            IOptionsMonitor<OpenAiConfiguration> openAiConfigMonitor,
             OpenAIClient openAiClient)
         {
-            this.configurationMonitor = configurationMonitor;
+            var conversationStorageConfig = conversationStorageConfigMonitor.CurrentValue;
+
+            this.conversationStorage = new BlobsTranscriptStore(
+                 dataConnectionString: conversationStorageConfig.ConnectionString,
+                 containerName: conversationStorageConfig.ContainerName);
+
+            this.openAiConfigMonitor = openAiConfigMonitor;
             this.openAiClient = openAiClient;
         }
 
@@ -33,25 +46,29 @@ namespace EasyGPTBot.Bots
             ITurnContext<IMessageActivity> turnContext,
             CancellationToken cancellationToken)
         {
-            var inMessage = turnContext.Activity.Text;
+            var userActivity = turnContext.Activity;
 
-            var configuration = this.configurationMonitor.CurrentValue;
+            // User query
+            var inMessage = userActivity.Text;
+
+            var openAiConfig = this.openAiConfigMonitor.CurrentValue;
 
             var chatOptions = new ChatCompletionsOptions()
             {
-                Temperature = configuration.Temperature,
-                MaxTokens = configuration.MaxOutputTokens
+                Temperature = openAiConfig.Temperature,
+                MaxTokens = openAiConfig.MaxOutputTokens
             };
 
             // Unfortunately at the time of this writing, we cannot send in the list
             // of messages to ChatCompletionsOptions directly, we always need to call
             // Add on the list it generates internally.
-            this.PopulateMessages(
+            await this.PopulateMessages(
+                userActivity: userActivity,
                 messages: chatOptions.Messages,
                 newUserMessage: inMessage);
 
             var response = await this.openAiClient.GetChatCompletionsAsync(
-                deploymentOrModelName: configuration.ModelName,
+                deploymentOrModelName: openAiConfig.ModelName,
                 chatCompletionsOptions: chatOptions,
                 cancellationToken: cancellationToken);
 
@@ -64,21 +81,12 @@ namespace EasyGPTBot.Bots
                 throw new ArgumentException($"First completion did not yield success. Stop reason: {stopReason}");
             }
 
-            var outMessage = firstChoice.Message.Content;
+            var botMessage = firstChoice.Message.Content;
+            var botActivity = MessageFactory.Text(botMessage);
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(outMessage), cancellationToken);
-        }
+            var botActivitySendResult = await turnContext.SendActivityAsync(botActivity, cancellationToken);
 
-        private void PopulateMessages(
-            IList<ChatMessage> messages,
-            string newUserMessage)
-        {
-            var currentMessage = new ChatMessage(
-                role: ChatRole.User,
-                content: newUserMessage);
-
-            messages.Add(currentMessage);
-
+            await this.UpdateConversationStorage(userActivity, botActivity, botActivitySendResult);
         }
 
         protected override async Task OnMembersAddedAsync(
@@ -87,6 +95,7 @@ namespace EasyGPTBot.Bots
             CancellationToken cancellationToken)
         {
             var welcomeText = "Hello and welcome!";
+
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
@@ -94,6 +103,109 @@ namespace EasyGPTBot.Bots
                     await turnContext.SendActivityAsync(MessageFactory.Text(welcomeText, welcomeText), cancellationToken);
                 }
             }
+        }
+
+        private void PopulateBotActivity(
+            IMessageActivity userActivity,
+            IMessageActivity botActivity,
+            ResourceResponse botActivitySendResult)
+        {
+            // If the activity is successfully sent, the task result contains a ResourceResponse object containing the ID that the receiving channel assigned to the activity.
+            botActivity.Id = botActivitySendResult.Id;            
+            botActivity.ChannelId = userActivity.ChannelId;
+            botActivity.Conversation = userActivity.Conversation;
+            botActivity.Timestamp = DateTimeOffset.Now;
+
+            botActivity.From = new ChannelAccount()
+            {
+                Id = ConversationStorageBotFromId
+            };
+        }
+
+        private async Task PopulateMessages(
+            IMessageActivity userActivity,
+            IList<ChatMessage> messages,
+            string newUserMessage)
+        {
+            var systemPrompt = await File.ReadAllTextAsync("Prompts\\SystemPrompt.md");
+
+            var promptMessage = new ChatMessage(
+                role: ChatRole.System,
+                content: systemPrompt);
+
+            messages.Add(promptMessage);
+
+            // TODO: Move -30 to configuration
+            var storedActivities = await this.GetAllTranscriptActivitiesAsync(
+                channelId: userActivity.ChannelId,
+                conversationId: userActivity.Conversation.Id,
+                startDate: DateTimeOffset.Now.AddDays(-30));
+
+            // Sort ascending by time
+            storedActivities = storedActivities
+                .OrderBy(x => x.Timestamp)
+                .ToList();
+
+            foreach (var storedActivity in storedActivities)
+            {
+                var role =
+                    storedActivity.From?.Id == ConversationStorageBotFromId
+                    ? ChatRole.Assistant
+                    : ChatRole.User;
+
+                var storedMessage = new ChatMessage(
+                    role: role,
+                    content: storedActivity.Text);
+
+                messages.Add(storedMessage);
+            }
+
+            var newMessage = new ChatMessage(
+                role: ChatRole.User,
+                content: newUserMessage);
+
+            messages.Add(newMessage);
+        }
+
+        private async Task UpdateConversationStorage(
+            IMessageActivity userActivity,
+            IMessageActivity botActivity,
+            ResourceResponse botActivitySendResult)
+        {
+            // Log the user query in conversation storage
+            await this.conversationStorage.LogActivityAsync(userActivity);
+
+            this.PopulateBotActivity(userActivity, botActivity, botActivitySendResult);
+
+            // Log bot response in conversation storage
+            await this.conversationStorage.LogActivityAsync(botActivity);
+        }
+
+        private async Task<List<IMessageActivity>> GetAllTranscriptActivitiesAsync(string channelId, string conversationId, DateTimeOffset startDate)
+        {
+            var allActivities = new List<IMessageActivity>();
+
+            string continuationToken = null;
+
+            do
+            {
+                var page = await this.conversationStorage.GetTranscriptActivitiesAsync(channelId, conversationId, continuationToken, startDate);
+
+                foreach (var item in page.Items)
+                {
+                    var messageActivity = item as IMessageActivity;
+
+                    if (messageActivity is not null)
+                    {
+                        allActivities.Add(messageActivity);
+                    }
+                }
+
+                continuationToken = page.ContinuationToken;
+
+            } while (!string.IsNullOrEmpty(continuationToken));
+
+            return allActivities;
         }
     }
 }
