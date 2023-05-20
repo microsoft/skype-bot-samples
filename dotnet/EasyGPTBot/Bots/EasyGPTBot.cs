@@ -51,6 +51,12 @@ namespace EasyGPTBot.Bots
             // User query
             var inMessage = userActivity.Text;
 
+            // Skip non-text or empty messages
+            if (string.IsNullOrWhiteSpace(inMessage))
+            {
+                return;
+            }
+
             var openAiConfig = this.openAiConfigMonitor.CurrentValue;
 
             var chatOptions = new ChatCompletionsOptions()
