@@ -4,10 +4,10 @@
   "MicrosoftAppPassword": "",
   "MicrosoftAppTenantId": "",
   "OpenAi": {
-    "ApiType": "",
+    "ApiType": "OpenAi", // OpenAi or AzureOpenAi
     "Endpoint": "",
-    "ApiKey": "xxx",
-    "ModelName": "",
+    "ApiKey": "",
+    "ModelName": "myModelName",
     "Temperature": "0.9",
     "MaxOutputTokens": "2000"
   },

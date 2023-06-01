@@ -14,7 +14,10 @@
   </ItemGroup>
 
     <ItemGroup>
-    <Content Update="appsettings.json">
+    <Content Update="appsettings.json5">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

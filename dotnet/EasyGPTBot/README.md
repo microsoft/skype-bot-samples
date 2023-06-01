@@ -22,6 +22,8 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
     cd # EasyGPTBot
     ```
 - Fill in configuration values in `appsettings.json` file, e.g. `ApiKey` for your Open AI API key.
+- Optionally copy `appsettings.json5` to `appsettings.Development.json` to override default settings.
+- set `ASPNETCORE_ENVIRONMENT` environment variable to `Development` (or optionally use feature of your IDE for that purpose)
 - Run the bot from a terminal or from Visual Studio, choose option A or B.
 
   A) From a terminal

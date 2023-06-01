@@ -20,7 +20,9 @@ namespace EasyGPTBot.Extensions
             services
                 .AddOptions<OpenAiConfiguration>()
                 .Configure<IConfiguration>(
-                    (settings, configuration) => configuration.GetSection(OpenAiConfiguration.SectionName).Bind(settings))
+                    (settings, configuration) => configuration
+                        .GetSection(OpenAiConfiguration.SectionName)
+                        .Bind(settings))
                 .ValidateDataAnnotations(); // Checks the [Required] annotations inside the configuration class
 
             var serviceProvider = services.BuildServiceProvider();
@@ -30,6 +32,8 @@ namespace EasyGPTBot.Extensions
             {
                 case ApiType.OpenAi:
                     var openAiClient = new OpenAIClient(openAiConfig.ApiKey);
+
+                    services.AddSingleton(x => openAiClient);
 
                     break;
 
