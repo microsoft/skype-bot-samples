@@ -7,7 +7,7 @@
     "ApiType": "OpenAi", // OpenAi or AzureOpenAi
     "Endpoint": "",
     "ApiKey": "",
-    "ModelName": "myModelName",
+    "ModelName": "gpt-3.5-turbo", // model name in case of Open AI or deployment name in case of Azure Open AI, for more info check out https://platform.openai.com/docs/models/overview
     "Temperature": "0.9",
     "MaxOutputTokens": "2000"
   },
