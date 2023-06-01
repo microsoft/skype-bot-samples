@@ -27,9 +27,12 @@ namespace EasyGPTBot
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient().AddControllers().AddNewtonsoftJson(options =>
+            services.AddHttpClient().AddControllers().AddJsonOptions(options =>
             {
-                options.SerializerSettings.MaxDepth = HttpHelper.BotMessageSerializerSettings.MaxDepth;
+                if (HttpHelper.BotMessageSerializerSettings.MaxDepth.HasValue)
+                {
+                    options.JsonSerializerOptions.MaxDepth = HttpHelper.BotMessageSerializerSettings.MaxDepth.Value;
+                }
             });
 
             // Create the Bot Framework Authentication to be used with the Bot Adapter.
@@ -39,7 +42,7 @@ namespace EasyGPTBot
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            services.AddTransient<IBot, Bots.EasyGPTBot>();
+            services.AddTransient<IBot, Bots.EasyGptBot>();
 
             services.AddConversationStorageConfiguration();
             services.AddOpenAiClient();

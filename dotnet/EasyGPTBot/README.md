@@ -6,7 +6,7 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 ## Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download) version 6.0
+- [.NET SDK](https://dotnet.microsoft.com/download) version 7.0
 
   ```bash
   # determine dotnet version
@@ -21,7 +21,7 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
     # change into project folder
     cd # EasyGPTBot
     ```
-
+- Fill in configuration values in `appsettings.json` file, e.g. `ApiKey` for your Open AI API key.
 - Run the bot from a terminal or from Visual Studio, choose option A or B.
 
   A) From a terminal

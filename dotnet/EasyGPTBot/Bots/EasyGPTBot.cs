@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace EasyGPTBot.Bots
 {
-    public class EasyGPTBot : ActivityHandler
+    public class EasyGptBot : ActivityHandler
     {
         private const string ConversationStorageBotFromId = "EasyGPTBot";
 
@@ -27,7 +27,7 @@ namespace EasyGPTBot.Bots
         private readonly IOptionsMonitor<OpenAiConfiguration> openAiConfigMonitor;
         private readonly OpenAIClient openAiClient;
 
-        public EasyGPTBot(
+        public EasyGptBot(
             IOptionsMonitor<ConversationStorageConfiguration> conversationStorageConfigMonitor,
             IOptionsMonitor<OpenAiConfiguration> openAiConfigMonitor,
             OpenAIClient openAiClient)
@@ -100,7 +100,7 @@ namespace EasyGPTBot.Bots
             ITurnContext<IConversationUpdateActivity> turnContext,
             CancellationToken cancellationToken)
         {
-            var welcomeText = "Hello and welcome!";
+            const string welcomeText = "Hello and welcome!";
 
             foreach (var member in membersAdded)
             {
@@ -117,7 +117,7 @@ namespace EasyGPTBot.Bots
             ResourceResponse botActivitySendResult)
         {
             // If the activity is successfully sent, the task result contains a ResourceResponse object containing the ID that the receiving channel assigned to the activity.
-            botActivity.Id = botActivitySendResult.Id;            
+            botActivity.Id = botActivitySendResult.Id;
             botActivity.ChannelId = userActivity.ChannelId;
             botActivity.Conversation = userActivity.Conversation;
             botActivity.Timestamp = DateTimeOffset.Now;
@@ -199,9 +199,7 @@ namespace EasyGPTBot.Bots
 
                 foreach (var item in page.Items)
                 {
-                    var messageActivity = item as IMessageActivity;
-
-                    if (messageActivity is not null)
+                    if (item is IMessageActivity messageActivity)
                     {
                         allActivities.Add(messageActivity);
                     }
