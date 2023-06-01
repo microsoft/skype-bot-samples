@@ -12,7 +12,7 @@
     "MaxOutputTokens": "2000"
   },
   "ConversationStorage": {
-    "ConnectionString": "FILL IN Azure Blob Storage Connection string here",
-    "ContainerName": "Container name where to store the transcripts"
+    "ConnectionString": "UseDevelopmentStorage=true",  // TODO FILL IN Azure Blob Storage Connection string here or use Storage Emulator locally
+    "ContainerName": "transcripts" // Container name where to store the transcripts
   }
 }

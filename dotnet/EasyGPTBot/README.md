@@ -7,6 +7,7 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 ## Prerequisites
 
 - [.NET SDK](https://dotnet.microsoft.com/download) version 7.0
+- Azure Storage Emulator or Azurite (optional, for local development)
 
   ```bash
   # determine dotnet version
@@ -23,7 +24,8 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
     ```
 - Fill in configuration values in `appsettings.json` file, e.g. `ApiKey` for your Open AI API key.
 - Optionally copy `appsettings.json5` to `appsettings.Development.json` to override default settings.
-- set `ASPNETCORE_ENVIRONMENT` environment variable to `Development` (or optionally use feature of your IDE for that purpose)
+- Set `ASPNETCORE_ENVIRONMENT` environment variable to `Development` (or optionally use feature of your IDE for that purpose)
+- Run Azure storage emulator (or Azurite) if you want to use local storage for bot state. 
 - Run the bot from a terminal or from Visual Studio, choose option A or B.
 
   A) From a terminal
