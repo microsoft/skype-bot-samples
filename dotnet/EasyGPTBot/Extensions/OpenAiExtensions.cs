@@ -10,51 +10,48 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 
-namespace EasyGPTBot.Extensions
+namespace EasyGPTBot.Extensions;
+
+public static class OpenAiExtensions
 {
-    public static class OpenAiExtensions
+    public static IServiceCollection AddOpenAiClient(
+        this IServiceCollection services)
     {
-        public static IServiceCollection AddOpenAiClient(
-            this IServiceCollection services)
+        services
+            .AddOptions<OpenAiConfiguration>()
+            .Configure<IConfiguration>(
+                (settings, configuration) => configuration
+                    .GetSection(OpenAiConfiguration.SectionName)
+                    .Bind(settings))
+            .ValidateDataAnnotations(); // Checks the [Required] annotations inside the configuration class
+
+        var serviceProvider = services.BuildServiceProvider();
+        var openAiConfig = serviceProvider.GetRequiredService<IOptions<OpenAiConfiguration>>().Value;
+
+        switch (openAiConfig.ApiType)
         {
-            services
-                .AddOptions<OpenAiConfiguration>()
-                .Configure<IConfiguration>(
-                    (settings, configuration) => configuration
-                        .GetSection(OpenAiConfiguration.SectionName)
-                        .Bind(settings))
-                .ValidateDataAnnotations(); // Checks the [Required] annotations inside the configuration class
+            case ApiType.OpenAi:
+                services.AddSingleton(_ => new OpenAIClient(openAiConfig.ApiKey));
 
-            var serviceProvider = services.BuildServiceProvider();
-            var openAiConfig = serviceProvider.GetRequiredService<IOptions<OpenAiConfiguration>>().Value;
+                break;
 
-            switch (openAiConfig.ApiType)
-            {
-                case ApiType.OpenAi:
-                    var openAiClient = new OpenAIClient(openAiConfig.ApiKey);
+            case ApiType.AzureOpenAi:
+            default:
+                if (openAiConfig.Endpoint is null)
+                {
+                    throw new ArgumentException("When Api Type is set to AzureOpenAi, Endpoint cannot be null");
+                }
 
-                    services.AddSingleton(x => openAiClient);
+                services.AddAzureClients(builder =>
+                {
+                    builder.AddOpenAIClient(
+                        endpoint: openAiConfig.Endpoint,
+                        credential: new AzureKeyCredential(openAiConfig.ApiKey));
+                });
 
-                    break;
-
-                case ApiType.AzureOpenAi:
-                default:
-                    if (openAiConfig.Endpoint is null)
-                    {
-                        throw new ArgumentException("When Api Type is set to AzureOpenAi, Endpoint cannot be null");
-                    }
-
-                    services.AddAzureClients(builder =>
-                    {
-                        builder.AddOpenAIClient(
-                            endpoint: openAiConfig.Endpoint,
-                            credential: new AzureKeyCredential(openAiConfig.ApiKey));
-                    });
-
-                    break;
-            }
-
-            return services;
+                break;
         }
+
+        return services;
     }
 }

@@ -1,11 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-namespace EasyGPTBot.Configuration
+namespace EasyGPTBot.Configuration;
+
+public enum ApiType
 {
-    public enum ApiType
-    {
-        OpenAi,
-        AzureOpenAi
-    }
+    OpenAi,
+    AzureOpenAi
 }
