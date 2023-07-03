@@ -18,6 +18,14 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 ## To try this sample
 
+- Clone the repo.
+
+<img width="767" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6a49a29e-5bb3-4e73-80de-49898c99b229">
+
+<img width="764" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/b210f1c2-582b-4393-a1fe-5bd3c85a58e1">
+
+<img width="375" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/c3dd3af1-a961-43d1-8502-0933d4532c07">
+
 - In a terminal, navigate to `EasyGPTBot`
 
     ```bash
