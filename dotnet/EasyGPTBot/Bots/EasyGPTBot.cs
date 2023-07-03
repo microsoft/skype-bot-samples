@@ -154,8 +154,7 @@ public class EasyGptBot : ActivityHandler
 
         foreach (var storedActivity in storedActivities)
         {
-            var role =
-                storedActivity.From?.Id == ConversationStorageBotFromId
+            var role = storedActivity.From?.Id == ConversationStorageBotFromId
                     ? ChatRole.Assistant
                     : ChatRole.User;
 
