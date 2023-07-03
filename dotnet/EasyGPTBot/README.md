@@ -6,8 +6,10 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 ## Prerequisites
 
+- Visual Studio 2022
 - [.NET SDK](https://dotnet.microsoft.com/download) version 7.0
-- Azure Storage Emulator or Azurite (optional, for local development)
+- Azure Storage Emulator or Azurite (optional, for local development, part of VS22)
+- [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases) 4.5.0 or greater (optional, see below)
 
   ```bash
   # determine dotnet version
