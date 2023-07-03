@@ -5,7 +5,7 @@
   "MicrosoftAppTenantId": "",
   "OpenAi": {
     "ApiType": "OpenAi", // OpenAi or AzureOpenAi
-    "Endpoint": "",
+    "Endpoint": "", // Only used if ApiType is set to AzureOpenAi
     "ApiKey": "",
     "ModelName": "gpt-3.5-turbo", // AI model name in case of Open AI or deployment name in case of Azure Open AI, for more info check out https://platform.openai.com/docs/models/overview
     "Temperature": "0.9",
