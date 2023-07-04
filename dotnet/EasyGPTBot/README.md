@@ -16,7 +16,7 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
   dotnet --version
   ```
 
-## To try this sample
+## To clone this sample from Visual Studio
 
 - Clone the repo.
 
@@ -26,32 +26,44 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 <img width="375" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/c3dd3af1-a961-43d1-8502-0933d4532c07">
 
-- In a terminal, navigate to `EasyGPTBot`
+## To clone this sample from command line
+
+- Make sure you have [Git For Windows installed](https://gitforwindows.org/)
+
+- In a terminal, clone the repo:
+    ```bash
+    git clone https://github.com/microsoft/skype-bot-samples/
+    ```
+
+- Navigate to `EasyGPTBot`
 
     ```bash
     # change into project folder
     cd # EasyGPTBot
     ```
+
+## To try this sample
+    
 - Fill in configuration values in `appsettings.json` file, e.g. `ApiKey` for your Open AI API key.
 - Optionally copy `appsettings.json5` to `appsettings.Development.json` to override default settings.
 - Set `ASPNETCORE_ENVIRONMENT` environment variable to `Development` (or optionally use feature of your IDE for that purpose)
 - Run Azure storage emulator (or Azurite) if you want to use local storage for bot state. 
 - Run the bot from a terminal or from Visual Studio, choose option A or B.
 
-  A) From a terminal
-
-  ```bash
-  # run the bot
-  dotnet run
-  ```
-
-  B) Or from Visual Studio
+### Start it from Visual Studio
 
   - Launch Visual Studio
   - File -> Open -> Project/Solution
   - Navigate to `EasyGPTBot` folder
   - Select `EasyGPTBot.csproj` file
   - Press `F5` to run the project
+
+### Start it from a terminal
+
+  ```bash
+  # run the bot
+  dotnet run
+  ```
 
 ## Testing the bot using Bot Framework Emulator
 
