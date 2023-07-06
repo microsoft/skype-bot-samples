@@ -1,6 +1,11 @@
 ﻿# EasyGPTBot
 
-Bot Framework v4 echo bot sample.
+- Bot based on the Bot Framework v4 echo bot sample.
+- New Features
+  - Supports both [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/) and [OpenAI](https://platform.openai.com/docs/models/gpt-4) APIs.
+  - Supports both the GPT 3.5 Turbo and GPT-4 models.
+  - Conversation memory - uses Azure Storage to conversation history for each user.
+  - It is primarily a [Skype bot](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-skype?view=azure-bot-service-4.0), but it also supports any other Azure Bot / Bot Framework channel, such as Telegram, Slack, Facebook, etc.
 
 This bot has been created using [Bot Framework](https://dev.botframework.com), it shows how to create a simple bot that accepts input from the user and echoes it back.
 
