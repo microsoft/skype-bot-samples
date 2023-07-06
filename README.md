@@ -12,7 +12,7 @@ Skype Code Samples for 3rd-party bots, including ChatGPT (GPT3.5 and GPT-4) powe
 - Conversation memory - uses Azure Storage to conversation history for each user.
 - It is primarily a [Skype bot](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-skype?view=azure-bot-service-4.0), but it also supports any other Azure Bot / Bot Framework channel, such as Telegram, Slack, Facebook, etc.
 
-<img width="750" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ad9129fb-74d7-4c00-b2bb-538f83fa80fb">
+<img width="750" alt="image" src="/images/EasyGPTBot-In-Skype.png">
 
 ### Trademark Notice
 

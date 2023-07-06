@@ -7,7 +7,7 @@
   - Conversation memory - uses Azure Storage to conversation history for each user.
   - It is primarily a [Skype bot](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-skype?view=azure-bot-service-4.0), but it also supports any other Azure Bot / Bot Framework channel, such as Telegram, Slack, Facebook, etc.
 
-<img width="750" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ad9129fb-74d7-4c00-b2bb-538f83fa80fb">
+<img width="750" alt="image" src="/images/EasyGPTBot-In-Skype.png">
 
 ## Prerequisites
 
@@ -25,15 +25,15 @@
 
 - Clone the repo.
 
-<img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6a49a29e-5bb3-4e73-80de-49898c99b229">
+<img width="600" alt="image" src="/images/Clone-Repo.png">
 
 <br />
 
-<img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/b210f1c2-582b-4393-a1fe-5bd3c85a58e1">
+<img width="600" alt="image" src="/images/Clone-Repo-2.png">
 
 <br />
 
-<img width="375" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/c3dd3af1-a961-43d1-8502-0933d4532c07">
+<img width="375" alt="image" src="/images/Clone-Repo-3.png">
 
 ## To clone this sample from command line
 
@@ -113,25 +113,25 @@
 
 - In Azure Portal, click on "Create a resource"
   
-  <img width="300" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/591b8352-1a5b-4158-81a9-bfbdbe2cb11d">
+  <img width="300" alt="image" src="/images/Create-A-Resource.png">
   
 - Search for Azure Bot then tap on Create
   
-  <img width="300" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6d80f379-8b18-4d1a-9f59-b14e4818c858">
+  <img width="300" alt="image" src="/images/Create-Azure-Bot.png">
 
 - Fill in the bot name, Subscription, and Resource Group:
 
-  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/72b0dc38-a3f9-4906-bca7-662890483c76">
+  <img width="600" alt="image" src="/images/Create-Azure-Bot-2.png">
 
 - Either let it create a new App ID, or use one that you already created. Make a note of the type of app (see the dropdown in the screenshot). You will need to fill in the type in the `MicrosoftAppType` field of `appsettings.json5`. Potential options are: `UserAssignedMSI`, `SingleTenant`, and `MultiTenant`.
 
-  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ec5ff39e-ffd1-4862-af77-a49490b600e8">
+  <img width="600" alt="image" src="/images/Create-Azure-Bot-3.png">
 
 - Complete the wizard, click on Create. After Deployment is complete, go to the new resource. If your bot is of type `MultiTenant`, you do not need to fill in a value for `MicrosoftAppTenantId` in `appsettings.json5`. If the bot is not multi tenant, you should see the Tenant Id on the Home Page of your bot resource.
 
 - Copy your App ID from the Configuration pane and place it in the `MicrosoftAppId` field of `appsettings.json5`. Finally. tap on `Manage Password` and then on `New client secret` to generate a password for the `MicrosoftAppPassword` field.
 
-  <img width="700" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/fbbd5c90-f048-4458-a0b6-746d4d0ed05b">
+  <img width="700" alt="image" src="/images/MicrosoftAppId.png">
 
 - Create a new Azure Storage account, and place its connection string in the `ConversationStorage` -> `ConnectionString` field.
 
@@ -141,19 +141,19 @@
   ngrok http 3978 --host-header=localhost
   ```
 
-  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/5231a91a-8e07-431f-ad7d-2453840632d4">
+  <img width="600" alt="image" src="/images/ngrok.png">
 
 - In Azure Bot under Azure Portal go to the Configuration tab and add the bot URL: http://hostname/api/messages
 
-  <img width="504" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/595d1c05-f273-4d0b-a987-3975d73f6e5c">
+  <img width="504" alt="image" src="/imagesa/Messaging-Endpoint.png">
 
 -  Then enable the Skype channel.
 
-  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/10002f2a-44ac-43be-a87b-aeb738419029">
+  <img width="600" alt="image" src="/images/Skype-Channel-1.png">
 
 - Finally, go back to the Channels tab, and click on "Add to Skype"
 
-  <img width="700" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/2b617fc1-32c0-4c4a-acd2-21cd9613e666">
+  <img width="700" alt="image" src="/images/Skype-Channel-2.png">
 
 ## Deploy the bot to Azure
 
