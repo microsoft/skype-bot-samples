@@ -155,6 +155,9 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
   <img width="700" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/2b617fc1-32c0-4c4a-acd2-21cd9613e666">
 
+- Enjoy talking to the bot.
+
+  <img width="750" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ad9129fb-74d7-4c00-b2bb-538f83fa80fb">
 
 ## Deploy the bot to Azure
 
