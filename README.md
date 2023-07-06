@@ -14,3 +14,6 @@ Skype Code Samples for 3rd-party bots, including ChatGPT (GPT3.5 and GPT-4) powe
 
 <img width="750" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ad9129fb-74d7-4c00-b2bb-538f83fa80fb">
 
+### Trademark Notice
+
+Trademarks This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft’s Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party’s policies.
