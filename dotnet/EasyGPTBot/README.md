@@ -7,7 +7,7 @@
   - Conversation memory - uses Azure Storage to conversation history for each user.
   - It is primarily a [Skype bot](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-skype?view=azure-bot-service-4.0), but it also supports any other Azure Bot / Bot Framework channel, such as Telegram, Slack, Facebook, etc.
 
-This bot has been created using [Bot Framework](https://dev.botframework.com), it shows how to create a simple bot that accepts input from the user and echoes it back.
+<img width="750" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ad9129fb-74d7-4c00-b2bb-538f83fa80fb">
 
 ## Prerequisites
 
@@ -154,10 +154,6 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 - Finally, go back to the Channels tab, and click on "Add to Skype"
 
   <img width="700" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/2b617fc1-32c0-4c4a-acd2-21cd9613e666">
-
-- Enjoy talking to the bot.
-
-  <img width="750" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ad9129fb-74d7-4c00-b2bb-538f83fa80fb">
 
 ## Deploy the bot to Azure
 
