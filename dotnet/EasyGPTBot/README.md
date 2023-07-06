@@ -45,10 +45,33 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 ## To try this sample
     
 - Fill in configuration values in `appsettings.json` file, e.g. `ApiKey` for your Open AI API key.
-- Optionally copy `appsettings.json5` to `appsettings.Development.json` to override default settings.
+- Optionally copy `appsettings.json` to `appsettings.Development.json` to override default settings.
 - Set `ASPNETCORE_ENVIRONMENT` environment variable to `Development` (or optionally use feature of your IDE for that purpose)
 - Run Azure storage emulator (or Azurite) if you want to use local storage for bot state. 
 - Run the bot from a terminal or from Visual Studio, choose option A or B.
+
+## Configuration Guide
+
+```yaml
+{
+  "MicrosoftAppType": "", // `UserAssignedMSI`, `SingleTenant`, or `MultiTenant`. See instructions below.
+  "MicrosoftAppId": "", // Azure Active Directory App ID. See instructions below.
+  "MicrosoftAppPassword": "", // See instructions below.
+  "MicrosoftAppTenantId": "", // Empty for MultiTenant, or tenant ID for other app types. See instructions below.
+  "OpenAi": {
+    "ApiType": "OpenAi", // OpenAi or AzureOpenAi
+    "Endpoint": "", // Only used if ApiType is set to AzureOpenAi
+    "ApiKey": ", // OpenAi or AzureOpenAi API key
+    "ModelName": "gpt-3.5-turbo", // AI model name in case of Open AI or deployment name in case of Azure Open AI, for more info check out https://platform.openai.com/docs/models/overview
+    "Temperature": "0.9", // See OpenAi API documentation
+    "MaxOutputTokens": "2000" // Maximum number of tokens to return in a reply. See OpenAi API documentation.
+  },
+  "ConversationStorage": {
+    "ConnectionString": "UseDevelopmentStorage=true",  // TODO FILL IN Azure Blob Storage Connection string here or use Storage Emulator locally
+    "ContainerName": "transcripts" // Container name where to store the transcripts
+  }
+}
+```
 
 ### Start it from Visual Studio
 
@@ -76,7 +99,6 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 - Launch Bot Framework Emulator
 - File -> Open Bot
 - Enter a Bot URL of `http://localhost:3978/api/messages`
-
 
 ## Create a bot inside Azure Bot Services (formerly Azure Bot Framework)
 
