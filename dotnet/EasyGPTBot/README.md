@@ -121,11 +121,11 @@
 
 - Fill in the bot name, Subscription, and Resource Group:
 
-  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/72b0dc38-a3f9-4906-bca7-662890483c76">
+  <img width="600" alt="image" src="/images/Create-Azure-Bot-2.png">
 
 - Either let it create a new App ID, or use one that you already created. Make a note of the type of app (see the dropdown in the screenshot). You will need to fill in the type in the `MicrosoftAppType` field of `appsettings.json5`. Potential options are: `UserAssignedMSI`, `SingleTenant`, and `MultiTenant`.
 
-  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ec5ff39e-ffd1-4862-af77-a49490b600e8">
+  <img width="600" alt="image" src="/images/Create-Azure-Bot-3.png">
 
 - Complete the wizard, click on Create. After Deployment is complete, go to the new resource. If your bot is of type `MultiTenant`, you do not need to fill in a value for `MicrosoftAppTenantId` in `appsettings.json5`. If the bot is not multi tenant, you should see the Tenant Id on the Home Page of your bot resource.
 
