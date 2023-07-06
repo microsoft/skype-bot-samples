@@ -33,7 +33,7 @@
 
 <br />
 
-<img width="375" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/c3dd3af1-a961-43d1-8502-0933d4532c07">
+<img width="375" alt="image" src="/images/Clone-Repo-3.png">
 
 ## To clone this sample from command line
 
@@ -113,11 +113,11 @@
 
 - In Azure Portal, click on "Create a resource"
   
-  <img width="300" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/591b8352-1a5b-4158-81a9-bfbdbe2cb11d">
+  <img width="300" alt="image" src="/images/Create-A-Resource.png">
   
 - Search for Azure Bot then tap on Create
   
-  <img width="300" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6d80f379-8b18-4d1a-9f59-b14e4818c858">
+  <img width="300" alt="image" src="/images/Create-Azure-Bot.png">
 
 - Fill in the bot name, Subscription, and Resource Group:
 
