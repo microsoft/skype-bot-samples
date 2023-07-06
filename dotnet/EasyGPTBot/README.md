@@ -7,7 +7,7 @@
   - Conversation memory - uses Azure Storage to conversation history for each user.
   - It is primarily a [Skype bot](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-skype?view=azure-bot-service-4.0), but it also supports any other Azure Bot / Bot Framework channel, such as Telegram, Slack, Facebook, etc.
 
-<img width="750" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ad9129fb-74d7-4c00-b2bb-538f83fa80fb">
+<img width="750" alt="image" src="/images/EasyGPTBot-In-Skype.png">
 
 ## Prerequisites
 
@@ -25,11 +25,11 @@
 
 - Clone the repo.
 
-<img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6a49a29e-5bb3-4e73-80de-49898c99b229">
+<img width="600" alt="image" src="/images/Clone-Repo.png">
 
 <br />
 
-<img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/b210f1c2-582b-4393-a1fe-5bd3c85a58e1">
+<img width="600" alt="image" src="/images/Clone-Repo-2.png">
 
 <br />
 
