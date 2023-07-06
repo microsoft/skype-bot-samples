@@ -130,6 +130,17 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 - Create a new Azure Storage account, and place its connection string in the `ConversationStorage` -> `ConnectionString` field.
 
+- Deploy the EasyGPTBot code to Azure and get a deployment URL, or use a third party solution such as ngrok to create a URL for your local machine:
+
+  ```
+  ngrok http 3978 --host-header=localhost
+  ```
+
+  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/5231a91a-8e07-431f-ad7d-2453840632d4)
+
+-
+
+
 ## Deploy the bot to Azure
 
 To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](https://aka.ms/azuredeployment) for a complete list of deployment instructions.
