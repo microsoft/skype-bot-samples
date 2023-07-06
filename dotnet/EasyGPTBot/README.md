@@ -131,7 +131,7 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 - Copy your App ID from the Configuration pane and place it in the `MicrosoftAppId` field of `appsettings.json5`. Finally. tap on `Manage Password` and then on `New client secret` to generate a password for the `MicrosoftAppPassword` field.
 
-  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/fbbd5c90-f048-4458-a0b6-746d4d0ed05b">
+  <img width="700" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/fbbd5c90-f048-4458-a0b6-746d4d0ed05b">
 
 - Create a new Azure Storage account, and place its connection string in the `ConversationStorage` -> `ConnectionString` field.
 
@@ -141,9 +141,19 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
   ngrok http 3978 --host-header=localhost
   ```
 
-  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/5231a91a-8e07-431f-ad7d-2453840632d4)
+  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/5231a91a-8e07-431f-ad7d-2453840632d4">
 
--
+- In Azure Bot under Azure Portal go to the Configuration tab and add the bot URL: http://hostname/api/messages
+
+  <img width="504" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/595d1c05-f273-4d0b-a987-3975d73f6e5c">
+
+-  Then enable the Skype channel.
+
+  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/10002f2a-44ac-43be-a87b-aeb738419029">
+
+- Finally, go back to the Channels tab, and click on "Add to Skype"
+
+  <img width="700" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/2b617fc1-32c0-4c4a-acd2-21cd9613e666">
 
 
 ## Deploy the bot to Azure
