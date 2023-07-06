@@ -20,9 +20,13 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 - Clone the repo.
 
-<img width="767" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6a49a29e-5bb3-4e73-80de-49898c99b229">
+<img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6a49a29e-5bb3-4e73-80de-49898c99b229">
 
-<img width="764" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/b210f1c2-582b-4393-a1fe-5bd3c85a58e1">
+<br />
+
+<img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/b210f1c2-582b-4393-a1fe-5bd3c85a58e1">
+
+<br />
 
 <img width="375" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/c3dd3af1-a961-43d1-8502-0933d4532c07">
 
@@ -104,34 +108,27 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 
 - In Azure Portal, click on "Create a resource"
   
-  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/591b8352-1a5b-4158-81a9-bfbdbe2cb11d)
+  <img width="300" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/591b8352-1a5b-4158-81a9-bfbdbe2cb11d">
   
 - Search for Azure Bot then tap on Create
   
-  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/6d80f379-8b18-4d1a-9f59-b14e4818c858)
+  <img width="300" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/6d80f379-8b18-4d1a-9f59-b14e4818c858">
 
 - Fill in the bot name, Subscription, and Resource Group:
 
-  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/72b0dc38-a3f9-4906-bca7-662890483c76)
+  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/72b0dc38-a3f9-4906-bca7-662890483c76">
 
 - Either let it create a new App ID, or use one that you already created. Make a note of the type of app (see the dropdown in the screenshot). You will need to fill in the type in the `MicrosoftAppType` field of `appsettings.json5`. Potential options are: `UserAssignedMSI`, `SingleTenant`, and `MultiTenant`.
 
-  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/ec5ff39e-ffd1-4862-af77-a49490b600e8)
+  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/ec5ff39e-ffd1-4862-af77-a49490b600e8">
 
 - Complete the wizard, click on Create. After Deployment is complete, go to the new resource. If your bot is of type `MultiTenant`, you do not need to fill in a value for `MicrosoftAppTenantId` in `appsettings.json5`. If the bot is not multi tenant, you should see the Tenant Id on the Home Page of your bot resource.
 
 - Copy your App ID from the Configuration pane and place it in the `MicrosoftAppId` field of `appsettings.json5`. Finally. tap on `Manage Password` and then on `New client secret` to generate a password for the `MicrosoftAppPassword` field.
 
-  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/fbbd5c90-f048-4458-a0b6-746d4d0ed05b)
+  <img width="600" alt="image" src="https://github.com/microsoft/skype-bot-samples/assets/330396/fbbd5c90-f048-4458-a0b6-746d4d0ed05b">
 
 - Create a new Azure Storage account, and place its connection string in the `ConversationStorage` -> `ConnectionString` field.
-  
-
-
-
- 
-
-
 
 ## Deploy the bot to Azure
 
