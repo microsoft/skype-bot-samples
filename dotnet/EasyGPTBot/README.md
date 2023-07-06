@@ -77,6 +77,40 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
 - File -> Open Bot
 - Enter a Bot URL of `http://localhost:3978/api/messages`
 
+
+## Create a bot inside Azure Bot Services (formerly Azure Bot Framework)
+
+- In Azure Portal, click on "Create a resource"
+  
+  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/591b8352-1a5b-4158-81a9-bfbdbe2cb11d)
+  
+- Search for Azure Bot then tap on Create
+  
+  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/6d80f379-8b18-4d1a-9f59-b14e4818c858)
+
+- Fill in the bot name, Subscription, and Resource Group:
+
+  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/72b0dc38-a3f9-4906-bca7-662890483c76)
+
+- Either let it create a new App ID, or use one that you already created. Make a note of the type of app (see the dropdown in the screenshot). You will need to fill in the type in the `MicrosoftAppType` field of `appsettings.json5`. Potential options are: `UserAssignedMSI`, `SingleTenant`, and `MultiTenant`.
+
+  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/ec5ff39e-ffd1-4862-af77-a49490b600e8)
+
+- Complete the wizard, click on Create. After Deployment is complete, go to the new resource. If your bot is of type `MultiTenant`, you do not need to fill in a value for `MicrosoftAppTenantId` in `appsettings.json5`. If the bot is not multi tenant, you should see the Tenant Id on the Home Page of your bot resource.
+
+- Copy your App ID from the Configuration pane and place it in the `MicrosoftAppId` field of `appsettings.json5`. Finally. tap on `Manage Password` and then on `New client secret` to generate a password for the `MicrosoftAppPassword` field.
+
+  ![image](https://github.com/microsoft/skype-bot-samples/assets/330396/fbbd5c90-f048-4458-a0b6-746d4d0ed05b)
+
+- Create a new Azure Storage account, and place its connection string in the `ConversationStorage` -> `ConnectionString` field.
+  
+
+
+
+ 
+
+
+
 ## Deploy the bot to Azure
 
 To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](https://aka.ms/azuredeployment) for a complete list of deployment instructions.
